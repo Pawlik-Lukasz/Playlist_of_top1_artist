@@ -8,7 +8,7 @@ Before running the project, ensure you have the following:
 
 - Python 3.x installed on your system
 - Dependencies installed via `pip install -r requirements.txt`
-- Spotify Developer account and credentials (CLIENT_ID, CLIENT_SECRET, and SPOTIFY_USERNAME) stored in a `.env` file
+- Spotify Developer account and credentials (`CLIENT_ID`, `CLIENT_SECRET`, and `SPOTIFY_USERNAME`) stored in a `.env` file
 
 ## Installation
 
@@ -45,8 +45,8 @@ python main.py
 ## Customization
 You can customize the project to suit your needs:
 
-- Adjust the AMOUNT_OF_SONGS variable to change the number of top songs to include in the playlist.
-- Modify the create_playlist() function to change the playlist name or add additional functionalities.
+- Adjust the `AMOUNT_OF_SONGS` variable to change the number of top songs to include in the playlist.
+- Modify the `create_playlist()` function to change the playlist name or add additional functionalities.
 
 ## Contributing
 Contributions are welcome! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or create a pull request.
