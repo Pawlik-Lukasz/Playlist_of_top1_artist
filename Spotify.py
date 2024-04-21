@@ -25,7 +25,6 @@ class SpotifyManager:
         for i in range(len(top_songs)):
             songs_data = self.sp.search(q=f"artist: {top_artist_name}, track: {top_songs[i]}",
                                         type="track", limit=1)
-            print(f"Top song: {top_songs[i]} \n Song data: {songs_data}")
             self.songs_URIs.append(songs_data["tracks"]["items"][0]["uri"])
         return self.songs_URIs
 
