@@ -29,7 +29,7 @@ CLIENT_SECRET=your_client_secret
 SPOTIFY_USERNAME=your_spotify_username
 ```
 
-# Usage
+## Usage
 1. Run the script main.py:
 ``` bash
 python main.py
@@ -42,11 +42,11 @@ python main.py
 
 5. Finally, the script will upload the artist's image as the playlist cover and delete the downloaded image.
 
-# Customization
+## Customization
 You can customize the project to suit your needs:
 
 - Adjust the AMOUNT_OF_SONGS variable to change the number of top songs to include in the playlist.
 - Modify the create_playlist() function to change the playlist name or add additional functionalities.
 
-# Contributing
+## Contributing
 Contributions are welcome! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or create a pull request.
