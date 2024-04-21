@@ -15,7 +15,7 @@ Before running the project, ensure you have the following:
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your_username/billboard-spotify-playlist.git
+git clone https://github.com/Pawlik-Lukasz/Playlist_of_top1_artist
 ```
 
 2. Navigate to the project directory:
