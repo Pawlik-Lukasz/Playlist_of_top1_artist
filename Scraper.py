@@ -41,15 +41,15 @@ class BillboardScraper:
         # taking last element of url, so we will name our file with artist's name
         name_of_file = self.img_url.split('/')[-1]
         # creating a file and converting img to base64
-        with open("images/" + name_of_file, "wb") as file:
+        with open(name_of_file, "wb") as file:
             file.write(img_response.content)
-        with open("images/" + name_of_file, "rb") as file:
+        with open(name_of_file, "rb") as file:
             data = file.read()
             self.img64 = base64.b64encode(data)
 
         # make dictionary with path to the image and the image:
         name_and_img = {
-            "path": "images/" + name_of_file,
+            "path": name_of_file,
             "img": self.img64
         }
         return name_and_img
