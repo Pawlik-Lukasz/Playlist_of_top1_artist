@@ -3,6 +3,7 @@ from Spotify import SpotifyManager
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+import time
 
 
 load_dotenv(".env")
@@ -51,5 +52,6 @@ if __name__ == "__main__":
     artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data()
     create_playlist(name=artist_name, songs=artist_songs,
                     image=artist_img)
-    # delete image from images folder
+    # wait 3 seconds (for playlist being created) and delete image from images folder
+    time.sleep(3)
     path_to_img.unlink()
