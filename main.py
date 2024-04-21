@@ -34,7 +34,7 @@ def scrape_data():
         "path_to_img":  Path(scraper.scrape_img_url()["path"])
 
     }
-    return scraped
+    return artist_name, artist_name_endpoint, artist_img, artist_songs, Path(scraper.scrape_img_url()["path"])
 
 
 def create_playlist(name, songs, image):
@@ -48,8 +48,8 @@ def create_playlist(name, songs, image):
 
 
 if __name__ == "__main__":
-    scraped_data = scrape_data()
-    create_playlist(name=scraped_data["artist_name"], songs=scraped_data["artist_songs"],
-                    image=scraped_data["artist_img"])
+    artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data()
+    create_playlist(name=artist_name, songs=artist_songs,
+                    image=artist_img)
     # delete image from images folder
-    scraped_data["path_to_img"].unlink()
+    path_to_img.unlink()
