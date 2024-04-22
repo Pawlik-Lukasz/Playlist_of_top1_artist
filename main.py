@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 import os
 import time
 
-
 load_dotenv(".env")
 CLIENT_ID = os.getenv("CLIENT_ID")  # client id for spotipy API
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")  # client secret for spotipy API
@@ -36,6 +35,7 @@ def create_playlist(name, songs, image):
     sp_manager.add_tracks_to_playlist()
     time.sleep(3)
     sp_manager.upload_cover_image(img_base64=image)
+    return True
 
 
 if __name__ == "__main__":
@@ -45,8 +45,7 @@ if __name__ == "__main__":
     if app.name and app.date:
         # username, input_date = app.playlist_created()
         artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data(input_date=app.date)
-        create_playlist(name=artist_name, songs=artist_songs,
-                        image=artist_img)
-        # wait 3 seconds (for playlist being created) and delete image from images folder
-        time.sleep(3)
-        path_to_img.unlink()
+        if create_playlist(name=artist_name, songs=artist_songs,
+                           image=artist_img):
+            # delete miniature from our project
+            path_to_img.unlink()
