@@ -13,6 +13,7 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")  # client secret for spotipy API
 USERNAME = os.getenv("SPOTIFY_USERNAME")  # username for Spotify account
 AMOUNT_OF_SONGS = 20
 
+
 def scrape_data(input_date):
     # scraping info about top artist from billboard page for given date
     scraper = BillboardScraper(date=input_date)
@@ -24,15 +25,6 @@ def scrape_data(input_date):
     artist_img = scraper.scrape_img_url()["img"]
     artist_songs = scraper.scrape_top_songs(amount_of_songs=AMOUNT_OF_SONGS)
 
-    # make dictionary containing all important variables
-    scraped = {
-        "artist_name": artist_name,
-        "artist_name_endpoint": artist_name_endpoint,
-        "artist_img": artist_img,
-        "artist_songs": artist_songs,
-        "path_to_img":  Path(scraper.scrape_img_url()["path"])
-
-    }
     return artist_name, artist_name_endpoint, artist_img, artist_songs, Path(scraper.scrape_img_url()["path"])
 
 
