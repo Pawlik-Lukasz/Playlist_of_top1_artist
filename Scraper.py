@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import base64
+from pathlib import Path
 
 
 class BillboardScraper:
@@ -41,18 +42,14 @@ class BillboardScraper:
         # taking last element of url, so we will name our file with artist's name
         name_of_file = self.img_url.split('/')[-1]
         # creating a file and converting img to base64
-        with open("images/" + name_of_file, "wb") as file:
+        with open(name_of_file, "wb") as file:
             file.write(img_response.content)
-        with open("images/" + name_of_file, "rb") as file:
+        with open(name_of_file, "rb") as file:
             data = file.read()
             self.img64 = base64.b64encode(data)
+        path = Path(name_of_file)
 
-        # make dictionary with path to the image and the image:
-        name_and_img = {
-            "path": "images/" + name_of_file,
-            "img": self.img64
-        }
-        return name_and_img
+        return self.img64, path
 
     def scrape_top_songs(self, amount_of_songs):
         # billboard page endpoint for top artist
