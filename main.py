@@ -3,7 +3,6 @@ from Spotify import SpotifyManager
 from dotenv import load_dotenv
 from GUI import PlaylistCreatorGUI
 import os
-from pathlib import Path
 import time
 
 
@@ -22,10 +21,10 @@ def scrape_data(input_date):
     # get endpoint for given artist name
     artist_name_endpoint = scraper.top_artist_name_endpoint()
     # get image from artist Billboard page
-    artist_img = scraper.scrape_img_url()["img"]
+    artist_img, path_to_img = scraper.scrape_img_url()
     artist_songs = scraper.scrape_top_songs(amount_of_songs=AMOUNT_OF_SONGS)
 
-    return artist_name, artist_name_endpoint, artist_img, artist_songs, Path(scraper.scrape_img_url()["path"])
+    return artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img
 
 
 def create_playlist(name, songs, image):
