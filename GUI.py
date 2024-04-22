@@ -6,6 +6,8 @@ class PlaylistCreatorGUI(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Playlist Creator")
+        self.name = None
+        self.date = None
         self.create_widgets()
 
     def create_widgets(self):
@@ -24,11 +26,11 @@ class PlaylistCreatorGUI(tk.Tk):
 
     def playlist_created(self):
         if self.date_entry.get() and self.name_entry.get():
-            name = self.name_entry.get()
-            date = self.date_entry.get()
-            messagebox.showinfo("Playlist Created", f"Playlist created for {name} with date {date}")
+            self.name = self.name_entry.get()
+            self.date = self.date_entry.get()
+            messagebox.showinfo("Playlist Created", f"Playlist created for {self.name} with date {self.date}")
             self.quit()
-            return name, date
+
         else:
             messagebox.showwarning("Missing Information", "Please enter both date and name before creating playlist")
 
