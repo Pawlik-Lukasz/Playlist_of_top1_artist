@@ -22,15 +22,23 @@ class PlaylistCreatorGUI(tk.Tk):
         self.date_entry.grid(row=0, column=1, padx=10, pady=5)
 
         self.create_button = tk.Button(self, text="Create Playlist", command=self.playlist_created)
-        self.create_button.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
+        self.create_button.grid(row=2, column=0, padx=10, pady=10)
+
+        self.delete_button = tk.Button(self, text="Delete Playlist", command=self.playlist_deleted)
+        self.delete_button.grid(row=2, column=1, padx=10, pady=10)
 
     def playlist_created(self):
         if self.date_entry.get() and self.name_entry.get():
             self.name = self.name_entry.get()
             self.date = self.date_entry.get()
             messagebox.showinfo("Playlist Created", f"Playlist created for {self.name} with date {self.date}")
-            self.quit()
-
         else:
             messagebox.showwarning("Missing Information", "Please enter both date and name before creating playlist")
+
+    def playlist_deleted(self):
+        if self.name and self.date:
+            messagebox.showinfo("Playlist Deleted", f"Playlist deleted for {self.name} with date {self.date}")
+        else:
+            messagebox.showwarning("Playlist not created", "You have to first create playlist to delete it")
+        return True
 

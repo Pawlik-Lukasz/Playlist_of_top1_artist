@@ -3,7 +3,6 @@ from Spotify import SpotifyManager
 from GUI import PlaylistCreatorGUI
 from dotenv import load_dotenv
 import os
-import time
 
 load_dotenv(".env")
 CLIENT_ID = os.getenv("CLIENT_ID")  # client id for spotipy API
@@ -32,6 +31,7 @@ def create_playlist(name, songs, image):
     sp_manager.authorize_spotify()
     sp_manager.get_songs_uris(top_artist_name=name, top_songs=songs)
     sp_manager.create_playlist(top_artist_name=name, amount_of_songs=AMOUNT_OF_SONGS)
+    # add tracks to playlist and then upload image
     if sp_manager.add_tracks_to_playlist():
         sp_manager.upload_cover_image(img_base64=image)
 
@@ -41,9 +41,13 @@ if __name__ == "__main__":
     app = PlaylistCreatorGUI()
     app.mainloop()
     if app.name and app.date:
-        # username, input_date = app.playlist_created()
-        artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data(input_date=app.date)
-        create_playlist(name=artist_name, songs=artist_songs,
-                        image=artist_img)
-        # delete miniature from our project
-        path_to_img.unlink()
+        if app.playlist_created:
+            artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data(input_date=app.date)
+            create_playlist(name=artist_name, songs=artist_songs,
+                            image=artist_img)
+            # delete miniature from our project
+            path_to_img.unlink()
+        elif app.playlist_deleted:
+            # delete playlist via spotipy
+            pass
+
