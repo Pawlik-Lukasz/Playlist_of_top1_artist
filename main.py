@@ -1,6 +1,7 @@
 from Scraper import BillboardScraper
 from Spotify import SpotifyManager
 from dotenv import load_dotenv
+from GUI import PlaylistCreatorGUI
 import os
 from pathlib import Path
 import time
@@ -12,12 +13,9 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")  # client secret for spotipy API
 USERNAME = os.getenv("SPOTIFY_USERNAME")  # username for Spotify account
 AMOUNT_OF_SONGS = 20
 
-date = input("From which date You want to search for top 1 artist? (Format YYYY-MM-DD, data since 2014)\n")
-
-
-def scrape_data():
+def scrape_data(input_date):
     # scraping info about top artist from billboard page for given date
-    scraper = BillboardScraper(date=date)
+    scraper = BillboardScraper(date=input_date)
     # get artist name from Billboard page
     artist_name = scraper.top_artist_name_title()
     # get endpoint for given artist name
@@ -49,7 +47,11 @@ def create_playlist(name, songs, image):
 
 
 if __name__ == "__main__":
-    artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data()
+
+    app = PlaylistCreatorGUI()
+    app.mainloop()
+    username, input_date = app.playlist_created()
+    artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data(input_date=input_date)
     create_playlist(name=artist_name, songs=artist_songs,
                     image=artist_img)
     # wait 3 seconds (for playlist being created) and delete image from images folder
