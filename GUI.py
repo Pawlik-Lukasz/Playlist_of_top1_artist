@@ -16,7 +16,7 @@ class PlaylistCreatorGUI(tk.Tk):
         self.name_entry = tk.Entry(self)
         self.name_entry.grid(row=1, column=1, padx=10, pady=5)
 
-        self.date_label = tk.Label(self, text="From which date You want to search for top 1 artist? (Format YYYY-MM-DD)")
+        self.date_label = tk.Label(self, text="Which day do you want to find the best artist from? (Format YYYY-MM-DD)")
         self.date_label.grid(row=0, column=0, padx=10, pady=5, sticky="w")
         self.date_entry = tk.Entry(self)
         self.date_entry.grid(row=0, column=1, padx=10, pady=5)
