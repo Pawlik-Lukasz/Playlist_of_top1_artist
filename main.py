@@ -32,10 +32,8 @@ def create_playlist(name, songs, image):
     sp_manager.authorize_spotify()
     sp_manager.get_songs_uris(top_artist_name=name, top_songs=songs)
     sp_manager.create_playlist(top_artist_name=name, amount_of_songs=AMOUNT_OF_SONGS)
-    sp_manager.add_tracks_to_playlist()
-    time.sleep(3)
-    sp_manager.upload_cover_image(img_base64=image)
-    return True
+    if sp_manager.add_tracks_to_playlist():
+        sp_manager.upload_cover_image(img_base64=image)
 
 
 if __name__ == "__main__":
@@ -45,7 +43,7 @@ if __name__ == "__main__":
     if app.name and app.date:
         # username, input_date = app.playlist_created()
         artist_name, artist_name_endpoint, artist_img, artist_songs, path_to_img = scrape_data(input_date=app.date)
-        if create_playlist(name=artist_name, songs=artist_songs,
-                           image=artist_img):
-            # delete miniature from our project
-            path_to_img.unlink()
+        create_playlist(name=artist_name, songs=artist_songs,
+                        image=artist_img)
+        # delete miniature from our project
+        path_to_img.unlink()

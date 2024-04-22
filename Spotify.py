@@ -36,6 +36,7 @@ class SpotifyManager:
 
     def add_tracks_to_playlist(self):
         self.sp.playlist_add_items(playlist_id=self.playlist_id, items=self.songs_URIs)
+        return True
 
     def upload_cover_image(self, img_base64):
         try:
